@@ -20,6 +20,9 @@ public class App {
                 case "1":
                     AddWord();
                     break;
+                case "2":
+                    EliminateWord();
+                    break;
 
                 default:
                     break;
@@ -35,5 +38,14 @@ public class App {
         JOptionPane.showMessageDialog(null, "la palabra se ha agregado correctamente");
     }
 
-   
+    public static void EliminateWord() {
+        JOptionPane.showInputDialog(null, "ingrese la palabara para eliminarla");
+        String wordToDelete = KEYBOARD.nextLine();
+        if (qualifier.getWordByInitial().values().removeIf(list -> list.contains(wordToDelete))) {
+            JOptionPane.showMessageDialog(null, "Palabra eliminada correctamente");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "La palabra no estaba almacenada");
+        }
+    }
 }
