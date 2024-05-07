@@ -14,14 +14,23 @@ public class App {
         String option = "";
 
         Menu menu = new Menu();
+        System.out.println("1");
         while (exist) {
+            System.out.println("2");
             option = menu.getMenu();
+            System.out.println("3");
             switch (option) {
+
                 case "1":
                     AddWord();
+                    System.out.println("a");
                     break;
                 case "2":
                     EliminateWord();
+                    break;
+
+                case "6":
+                    exist = false;
                     break;
 
                 default:
@@ -32,20 +41,18 @@ public class App {
     }
 
     public static void AddWord() {
-        JOptionPane.showInputDialog(null, "introduzca la palabra");
-        String wordToAdd = KEYBOARD.nextLine();
+        String wordToAdd = JOptionPane.showInputDialog(null, "introduzca la palabra");
         qualifier.addWord(wordToAdd);
         JOptionPane.showMessageDialog(null, "la palabra se ha agregado correctamente");
     }
 
     public static void EliminateWord() {
-        JOptionPane.showInputDialog(null, "ingrese la palabara para eliminarla");
-        String wordToDelete = KEYBOARD.nextLine();
+        String wordToDelete = JOptionPane.showInputDialog(null, "ingrese la palabara para eliminarla");
         if (qualifier.getWordByInitial().values().removeIf(list -> list.contains(wordToDelete))) {
             JOptionPane.showMessageDialog(null, "Palabra eliminada correctamente");
-
         } else {
             JOptionPane.showMessageDialog(null, "La palabra no estaba almacenada");
         }
     }
+
 }
