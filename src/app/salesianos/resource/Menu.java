@@ -1,8 +1,10 @@
 package app.salesianos.resource;
 
+import javax.swing.JOptionPane;
+
 public class Menu {
     public String getMenu(){
-        String menu = """
+        String Menu = """
                 Menu de opciones:
                 1. Añiadir palabra.
                 2. Eliminar palabra.
@@ -11,6 +13,6 @@ public class Menu {
                 5. Ver palabras por inicial.
                 6. Cerrar programa
                 """;
-                return menu;
+                return JOptionPane.showInputDialog(null, Menu, Menu, JOptionPane.INFORMATION_MESSAGE);
     }
 }
