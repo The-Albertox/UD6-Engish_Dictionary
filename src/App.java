@@ -16,11 +16,8 @@ public class App {
         String option = "";
 
         Menu menu = new Menu();
-        System.out.println("1");
         while (exist) {
-            System.out.println("2");
             option = menu.getMenu();
-            System.out.println("3");
             switch (option) {
 
                 case "1":
@@ -36,14 +33,20 @@ public class App {
                     break;
 
                 case "4":
+                    ShowByInitial();
+                    break;
+
+                case "5":
                     ShowWordByInitial();
                     break;
 
                 case "6":
+                    JOptionPane.showMessageDialog(null, "Hasta la proxima");
                     exist = false;
                     break;
 
                 default:
+                    JOptionPane.showMessageDialog(null, "error opcion incorrecta");
                     break;
             }
         }
@@ -81,12 +84,26 @@ public class App {
         }
     }
 
-    public static void ShowWordByInitial() {
-        JOptionPane.showMessageDialog(null, " mostrar iniciales disponibles");
+    public static void ShowByInitial() {
+        JOptionPane.showInputDialog(null, " mostrar iniciales disponibles");
         Set<Character> initials = qualifier.getInitials();
         for (char initial : initials) {
             JOptionPane.showMessageDialog(null, initial);
         }
+    }
+
+    public static void ShowWordByInitial() {
+        char initialToShow = JOptionPane.showInputDialog(null, "ingrese una inicial").charAt(0);
+        List<String> wordsByInitial = qualifier.getWordsByInitial(initialToShow);
+        if (wordsByInitial.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "no se ha encontrado la palabra");
+        } else {
+            JOptionPane.showMessageDialog(null, ("Palabras que comienzan con " + initialToShow + ":"));
+            for (String word : wordsByInitial) {
+                JOptionPane.showMessageDialog(null, word);
+            }
+        }
+
     }
 
 }
