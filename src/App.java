@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -52,6 +53,22 @@ public class App {
             JOptionPane.showMessageDialog(null, "Palabra eliminada correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "La palabra no estaba almacenada");
+        }
+    }
+
+    public static void ExistWord() {
+        String wordToFind = JOptionPane.showInputDialog(null, "Ponga la palabra que desa buscar");
+        boolean exists = false;
+        for (List<String> words : qualifier.getWordByInitial().values()) {
+            if (words.contains(wordToFind)) {
+                exists = true;
+                break;
+            }
+        }
+        if (exists) {
+            JOptionPane.showMessageDialog(null, "la palabra se ha encontrado");
+        } else {
+            JOptionPane.showMessageDialog(null, "La palabra no se ha encontrado");
         }
     }
 
