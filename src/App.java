@@ -22,8 +22,8 @@ public class App {
 
                 case "1":
                     AddWord();
-                    System.out.println("a");
                     break;
+
                 case "2":
                     EliminateWord();
                     break;
@@ -61,7 +61,14 @@ public class App {
 
     public static void EliminateWord() {
         String wordToDelete = JOptionPane.showInputDialog(null, "ingrese la palabara para eliminarla");
-        if (qualifier.getWordByInitial().values().removeIf(list -> list.contains(wordToDelete))) {
+        boolean exists = false;
+        for (List<String> words : qualifier.getWordByInitial().values()) {
+            if (words.remove(wordToDelete)) {
+                exists = true;
+                break;
+            }
+        }
+        if (exists) {
             JOptionPane.showMessageDialog(null, "Palabra eliminada correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "La palabra no estaba almacenada");
@@ -85,10 +92,17 @@ public class App {
     }
 
     public static void ShowByInitial() {
-        JOptionPane.showInputDialog(null, " mostrar iniciales disponibles");
+        JOptionPane.showMessageDialog(null, "Iniciales disponibles :");
         Set<Character> initials = qualifier.getInitials();
-        for (char initial : initials) {
-            JOptionPane.showMessageDialog(null, initial);
+        if (initials.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "no hay iniciales disponibles en este momento");
+        } else {
+            for (char initial : initials) {
+                List<String> wordByInitials = qualifier.getWordsByInitial(initial);
+                if (!wordByInitials.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, initial);
+                }
+            }
         }
     }
 
